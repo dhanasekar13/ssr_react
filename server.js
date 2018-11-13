@@ -6,7 +6,7 @@ import { StaticRouter } from 'react-router'
 import bodyParser from 'body-parser'
 const app               = express()
 const PORT              = process.env.PORT || 3000;
-
+import {Helmet} from 'react-helmet'
 import App from './src/app'
 
 app.use(bodyParser.json())
@@ -20,10 +20,14 @@ app.get('*',(req,resp)=>{
         <App />
     </StaticRouter>
   )
+
+  const helmet = Helmet.renderStatic()
+
   const html =`
       <html>
         <head>
-
+        ${helmet.meta.toString()}
+${helmet.title.toString()}
         </head>
         <body>
             <div id='root'>
