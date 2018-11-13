@@ -8,10 +8,35 @@ const app               = express()
 const PORT              = process.env.PORT || 3000;
 import {Helmet} from 'react-helmet'
 import App from './src/app'
-
+var path = require('path')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static('build/public'))
+app.get('/signup',(req,resp)=>{
+  resp.sendFile(path.resolve('full/ssrendering/ssr3/build/public/index.html'))
+})
+
+app.get('/chk',(req,resp)=>{
+  resp.json({
+    'one':1,
+    'two':2,
+    'three':3,
+    'four':4,
+    'five':5,
+    'six':6,
+    'seven':7,
+    'eight':8,
+    'nine':9,
+    'ten':10,
+    'eleven':11,
+    'tweleve':12,
+    'thirty':13
+  })
+})
+
+app.get('/okay',(req,resp)=>{
+  resp.send('hey this okay message checking of the application')
+})
 
 app.get('*',(req,resp)=>{
   const context = {}
